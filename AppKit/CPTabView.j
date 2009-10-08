@@ -260,10 +260,10 @@ var CPTabViewDidSelectTabViewItemSelector           = 1,
 */
 - (void)removeTabViewItem:(CPTabViewItem)aTabViewItem
 {
-    [_tabViewItems removeObjectIdenticalTo:aTabViewItem];
-
     [_labelsView tabView:self didRemoveTabViewItem:aTabViewItem];
     
+    [_tabViewItems removeObjectIdenticalTo:aTabViewItem];
+
     if (_delegateSelectors & CPTabViewDidChangeNumberOfTabViewItemsSelector)
         [_delegate tabViewDidChangeNumberOfTabViewItems:self];
 }
