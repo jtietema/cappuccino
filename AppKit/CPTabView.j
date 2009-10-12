@@ -247,6 +247,8 @@ var CPTabViewDidSelectTabViewItemSelector           = 1,
     
     [_labelsView tabView:self didAddTabViewItem:aTabViewItem];
     
+    [aTabViewItem setTabView:self];
+    
     if ([_tabViewItems count] == 1)
         [self selectFirstTabViewItem:self];
 
@@ -527,6 +529,11 @@ var CPTabViewDidSelectTabViewItemSelector           = 1,
         [self selectTabViewItem:tabViewItem];
 }
 
+- (void)reloadLabels
+{
+    [_labelsView reloadLabels];
+}
+
 @end
 
 var CPTabViewItemsKey               = "CPTabViewItemsKey",
@@ -707,6 +714,19 @@ var _CPTabLabelsViewBackgroundColor = nil,
     [super setFrameSize:aSize];
     
     [self layoutSubviews];
+}
+
+- (void)reloadLabels
+{
+    var index = 0,
+        count = _tabLabels.length;
+    
+    for (; index < count; ++index)
+    {
+        var label = _tabLabels[index];
+        
+        [label update];
+    }
 }
 
 @end

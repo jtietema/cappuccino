@@ -58,6 +58,7 @@ CPPressedTab    = 2;
     
     CPView      _view;
     CPView      _auxiliaryView;
+    CPTabView   _tabView;
 }
 
 /*!
@@ -82,6 +83,10 @@ CPPressedTab    = 2;
 - (void)setLabel:(CPString)aLabel
 {
     _label = aLabel;
+    if (_tabView)
+    {
+        [_tabView reloadLabels];
+    }
 }
 
 /*!
@@ -161,6 +166,13 @@ CPPressedTab    = 2;
 - (CPTabView)tabView
 {
     return _tabView;
+}
+/*!
+    Set the parent Tab View
+*/
+- (void)setTabView:(CPTabView)aTabView
+{
+    _tabView = aTabView;
 }
 
 @end
